@@ -1,7 +1,11 @@
 from django.shortcuts import render
 
+from places.models import Place
+
 
 def index(request):
+    legends = Place.objects.get(id=1)
+    roofs = Place.objects.get(id=2)
     places_json = {
       "type": "FeatureCollection",
       "features": [
@@ -9,10 +13,10 @@ def index(request):
           "type": "Feature",
           "geometry": {
             "type": "Point",
-            "coordinates": [37.62, 55.793676]
+            "coordinates": list(legends.coordinates.values())
           },
           "properties": {
-            "title": "«Легенды Москвы",
+            "title": legends.title,
             "placeId": "moscow_legends",
             "detailsUrl": "static/places/moscow_legends.json"
           }
@@ -21,10 +25,10 @@ def index(request):
           "type": "Feature",
           "geometry": {
             "type": "Point",
-            "coordinates": [37.64, 55.753676]
+            "coordinates": list(roofs.coordinates.values())
           },
           "properties": {
-            "title": "Крыши24.рф",
+            "title": roofs.title,
             "placeId": "roofs24",
             "detailsUrl": "static/places/roofs24.json"
           }
