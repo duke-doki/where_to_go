@@ -9,10 +9,9 @@ from django.db import migrations, transaction
 def add_images(apps, schema_editor):
     Place = apps.get_model('places', 'Place')
     Image = apps.get_model('places', 'Image')
-    directory = 'static/places'
-    os.makedirs('images', exist_ok=True)
-    for json_file in os.listdir(directory):
-        with open(os.path.join(directory, json_file)) as file:
+    os.makedirs('media', exist_ok=True)
+    for json_file in os.listdir('static/places'):
+        with open(os.path.join('static/places', json_file)) as file:
             json_place = json.load(file)
         images_urls = json_place['imgs']
         with transaction.atomic():
@@ -25,7 +24,7 @@ def add_images(apps, schema_editor):
                 )
                 response = requests.get(image_url)
                 image.picture.save(
-                    f'images/{json_place["title"]}{index}.jpg',
+                    f'{json_place["title"]}{index}.jpg',
                     ContentFile(response.content),
                     save=True
                 )

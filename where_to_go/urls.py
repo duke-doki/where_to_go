@@ -17,10 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.http import HttpResponse
 from django.urls import path
-
+from django.conf.urls.static import static
+from django.conf import settings
 from poster.views import show_poster
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', show_poster),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
