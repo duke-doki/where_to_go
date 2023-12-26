@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from places.models import Place
+from places.models import Place, Image
 
 
 # Register your models here.
@@ -8,3 +8,8 @@ from places.models import Place
 @admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):
     list_display = ('title', )
+
+
+@admin.register(Image)
+class ImageAdmin(admin.ModelAdmin):
+    list_filter = ('place', )

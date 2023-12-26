@@ -22,3 +22,28 @@ class Place(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Image(models.Model):
+    picture = models.ImageField(
+        'Картинка',
+        blank=True
+    )
+    place = models.ForeignKey(
+        Place,
+        verbose_name='Связь с местом',
+        on_delete=models.CASCADE,
+        null=True, blank=True,
+        related_name='images'
+    )
+    number = models.IntegerField(
+        'Номер',
+        null=True, blank=True
+    )
+    url = models.URLField(
+        'Ссылка на картинку',
+        null=True, blank=True
+    )
+
+    def __str__(self):
+        return f'{self.number} {self.place.title}'
