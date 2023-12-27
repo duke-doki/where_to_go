@@ -18,7 +18,6 @@ def add_images(apps, schema_editor):
             place = Place.objects.get(title=json_place['title'])
             for index, image_url in enumerate(images_urls, start=1):
                 image = Image.objects.create(
-                    url=image_url,
                     place=place,
                     number=index
                 )

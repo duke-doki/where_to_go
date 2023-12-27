@@ -40,10 +40,6 @@ class Image(models.Model):
         'Номер',
         null=True, blank=True
     )
-    url = models.URLField(
-        'Ссылка на картинку',
-        null=True, blank=True
-    )
 
     def __str__(self):
         return f'{self.number} {self.place.title}'
