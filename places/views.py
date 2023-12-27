@@ -1,8 +1,11 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
+from django.urls import reverse
+
 from places.models import Place
 import urllib.parse
+
 
 def index(request):
     legends = Place.objects.get(id=1)
@@ -19,7 +22,7 @@ def index(request):
                 "properties": {
                     "title": legends.title,
                     "placeId": "moscow_legends",
-                    "detailsUrl": "static/places/moscow_legends.json"
+                    "detailsUrl": reverse(place, args=[1])
                 }
             },
             {
@@ -31,7 +34,7 @@ def index(request):
                 "properties": {
                     "title": roofs.title,
                     "placeId": "roofs24",
-                    "detailsUrl": "static/places/roofs24.json"
+                    "detailsUrl": reverse(place, args=[2])
                 }
             }
         ]
