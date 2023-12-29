@@ -43,7 +43,21 @@ To add a new place on the map run:
 ```bash
 python manage.py load_place <your_link.json>
 ```
-
+*json must look like this:
+```
+{
+    "title": "",
+    "imgs": [
+       
+    ],
+    "description_short": "",
+    "description_long": "",
+    "coordinates": {
+        "lng": "",
+        "lat": ""
+    }
+}
+```
 
 ### Run
 
