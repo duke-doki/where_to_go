@@ -8,37 +8,30 @@ import urllib.parse
 
 
 def index(request):
-    legends = Place.objects.get(id=1)
-    roofs = Place.objects.get(id=2)
+    all_places = Place.objects.all()
     places_json = {
         "type": "FeatureCollection",
         "features": [
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": list(legends.coordinates.values())
-                },
-                "properties": {
-                    "title": legends.title,
-                    "placeId": "moscow_legends",
-                    "detailsUrl": reverse(place, args=[1])
-                }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": list(roofs.coordinates.values())
-                },
-                "properties": {
-                    "title": roofs.title,
-                    "placeId": "roofs24",
-                    "detailsUrl": reverse(place, args=[2])
-                }
-            }
+
         ]
     }
+    for place_point in all_places:
+        places_json['features'].append(
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": list(place_point.coordinates.values())
+                },
+                "properties": {
+                    "title": place_point.title,
+                    "placeId": "moscow_legends",
+                    "detailsUrl": reverse(place, args=[place_point.id])
+                }
+            }
+
+        )
+
     data = {'places_json': places_json, }
     return render(request, "index.html", context=data)
 

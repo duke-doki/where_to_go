@@ -22,9 +22,10 @@ from django.conf import settings
 
 from places.views import index, place
 
-urlpatterns = [
+urlpatterns = ([
     path('admin/', admin.site.urls),
     path('', index),
     path('places/<int:place_id>/', place),
     path('tinymce/', include('tinymce.urls'))
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) +
+               static(settings.STATIC_URL, document_root=settings.STATIC_ROOT))

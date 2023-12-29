@@ -37,6 +37,14 @@ ALLOWED_HOSTS='127.0.0.1,'
 - Download the code
 - Create database with `python manage.py migrate`
 
+### load_place
+
+To add a new place on the map run:
+```bash
+python manage.py load_place <your_link.json>
+```
+
+
 ### Run
 
 Launch on Linux(Python 3) or Windows:
