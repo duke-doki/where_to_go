@@ -1,6 +1,7 @@
 # Lesson check notificator
 
 A django project that shows special places on the map.
+Here is [example](http://notagirl.pythonanywhere.com/):
 
 ## Environment
 
