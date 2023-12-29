@@ -38,8 +38,12 @@ class Image(models.Model):
     )
     number = models.IntegerField(
         'Номер',
-        null=True, blank=True
+        null=True, blank=True,
+        db_index=True
     )
+
+    class Meta:
+        ordering = ['number']
 
     def __str__(self):
         return f'{self.number} {self.place.title}'

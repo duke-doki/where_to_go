@@ -1,11 +1,12 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-
+from adminsortable2.admin import SortableAdminMixin
 from places.models import Place, Image
+from adminsortable2.admin import SortableTabularInline
+from adminsortable2.admin import SortableAdminBase
 
 
-# Register your models here.
-class ImageInline(admin.TabularInline):
+class ImageInline(SortableTabularInline):
     model = Image
     readonly_fields = ["pic", ]
     fields = ("picture", "pic", "number")
@@ -21,7 +22,7 @@ class ImageInline(admin.TabularInline):
 
 
 @admin.register(Place)
-class PlaceAdmin(admin.ModelAdmin):
+class PlaceAdmin(SortableAdminBase, admin.ModelAdmin):
     list_display = ('title', )
     inlines = [
         ImageInline,
