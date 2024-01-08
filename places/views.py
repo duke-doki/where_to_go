@@ -39,7 +39,7 @@ def get_place(request, place_id):
         Place.objects.prefetch_related('images'),
         id=place_id
     )
-    place_info = {
+    serialized_place = {
         "title": place.title,
         "imgs": [
             urllib.parse.unquote(img.picture.url) for img in place.images.all()
@@ -49,7 +49,7 @@ def get_place(request, place_id):
         "coordinates": place.coordinates()
     }
     response = JsonResponse(
-        place_info,
+        serialized_place,
         safe=False,
         json_dumps_params={"ensure_ascii": False, "indent": 2}
     )
