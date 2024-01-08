@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('places', '0007_auto_20231226_1024'),
+        ('places', '0006_image_url'),
     ]
 
     operations = [
