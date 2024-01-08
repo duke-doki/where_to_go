@@ -21,7 +21,7 @@ class Place(models.Model):
     lat = models.FloatField(
         'Широта',
     )
-    
+
     def __str__(self):
         return self.title
 
@@ -46,7 +46,7 @@ class Image(models.Model):
     number = models.IntegerField(
         'Номер',
         default=0,
-        null=True, blank=True,
+        blank=True,
         db_index=True
     )
 
