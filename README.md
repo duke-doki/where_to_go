@@ -8,7 +8,7 @@ Here is [example](http://notagirl.pythonanywhere.com/):
 
 ### Requirements
 
-Python3 should be already installed. 
+Python 3.10 should be already installed. 
 Then use `pip` (or `pip3`, if there is a conflict with Python2) to install dependencies:
 ```bash
 pip install -r requirements.txt
