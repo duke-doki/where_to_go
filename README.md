@@ -16,9 +16,9 @@ pip install -r requirements.txt
 
 ### Environment variables
 
-- SECRET_KEY
-- DEBUG
-- ALLOWED_HOSTS
+- [SECRET_KEY](https://docs.djangoproject.com/en/5.0/ref/settings/#secret-key)
+- [DEBUG](https://docs.djangoproject.com/en/5.0/ref/settings/#debug)
+- [ALLOWED_HOSTS](https://docs.djangoproject.com/en/5.0/ref/settings/#allowed-hosts)
 
 1. Put `.env` file near `main.py`.
 2. `.env` contains text data without quotes, except `ALLOWED_HOSTS`.
