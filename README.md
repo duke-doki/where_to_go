@@ -1,4 +1,4 @@
-# Lesson check notificator
+# Where to go app
 
 A django project that shows special places on the map.
 Here is [example](http://notagirl.pythonanywhere.com/):
