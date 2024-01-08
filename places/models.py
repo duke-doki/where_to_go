@@ -15,10 +15,21 @@ class Place(models.Model):
         'Длинное описание',
         blank=True
     )
-    coordinates = models.JSONField(
-        'Координаты',
+    lng = models.FloatField(
+        'Долгота',
         null=True, blank=True
     )
+    lat = models.FloatField(
+        'Широта',
+        null=True, blank=True
+    )
+
+    def coordinates(self):
+        coordinates_json = {
+            "lng": self.lng,
+            "lat": self.lat
+        }
+        return coordinates_json
 
     def __str__(self):
         return self.title

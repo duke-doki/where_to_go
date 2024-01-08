@@ -16,7 +16,8 @@ class Command(BaseCommand):
             title=json_place['title'],
             short_description=json_place['description_short'],
             long_description=json_place['description_long'],
-            coordinates=json_place['coordinates']
+            lng=json_place['coordinates']['lng'],
+            lat=json_place['coordinates']['lat']
         )
         images_urls = json_place['imgs']
         for index, image_url in enumerate(images_urls, start=1):

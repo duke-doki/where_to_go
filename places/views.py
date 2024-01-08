@@ -22,7 +22,7 @@ def index(request):
                 "type": "Feature",
                 "geometry": {
                     "type": "Point",
-                    "coordinates": list(place_point.coordinates.values())
+                    "coordinates": list(place_point.coordinates().values())
                 },
                 "properties": {
                     "title": place_point.title,
@@ -46,7 +46,7 @@ def place(request, place_id):
         ],
         "description_short": place.short_description,
         "description_long": place.long_description,
-        "coordinates": place.coordinates
+        "coordinates": place.coordinates()
     }
     response = JsonResponse(
         place_info,
