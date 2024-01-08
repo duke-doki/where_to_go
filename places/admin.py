@@ -31,7 +31,7 @@ class PlaceAdmin(SortableAdminBase, admin.ModelAdmin):
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    list_filter = ('place', )
+    raw_id_fields = ('place', )
     readonly_fields = ["pic", ]
 
     def pic(self, obj):
