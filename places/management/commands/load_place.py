@@ -12,7 +12,7 @@ class Command(BaseCommand):
         response = requests.get(link)
         response.raise_for_status()
         raw_place = response.json()
-        place, is_found = Place.objects.get_or_create(
+        place, created = Place.objects.get_or_create(
             title=raw_place['title'],
             defaults={
                 'short_description': raw_place['description_short'],
