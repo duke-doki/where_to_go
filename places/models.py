@@ -22,7 +22,7 @@ class Place(models.Model):
         'Широта',
     )
 
-    def coordinates(self):
+    def compile_coordinates(self):
         coordinates = {
             "lng": self.lng,
             "lat": self.lat
