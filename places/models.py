@@ -9,11 +9,11 @@ class Place(models.Model):
     )
     description_short = models.TextField(
         'Короткое описание',
-        null=True, blank=True
+        blank=True
     )
     description_long = HTMLField(
         'Длинное описание',
-        null=True, blank=True
+        blank=True
     )
     coordinates = models.JSONField(
         'Координаты',
