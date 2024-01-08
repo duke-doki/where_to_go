@@ -23,11 +23,11 @@ class Place(models.Model):
     )
 
     def coordinates(self):
-        coordinates_json = {
+        coordinates = {
             "lng": self.lng,
             "lat": self.lat
         }
-        return coordinates_json
+        return coordinates
 
     def __str__(self):
         return self.title
