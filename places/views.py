@@ -27,7 +27,7 @@ def index(request):
                 "properties": {
                     "title": place_point.title,
                     "placeId": "moscow_legends",
-                    "detailsUrl": reverse(place, args=[place_point.id])
+                    "detailsUrl": reverse(get_place, args=[place_point.id])
                 }
             }
 
@@ -37,7 +37,7 @@ def index(request):
     return render(request, "index.html", context=data)
 
 
-def place(request, place_id):
+def get_place(request, place_id):
     place = get_object_or_404(Place, id=place_id)
     place_info = {
         "title": place.title,

@@ -33,9 +33,9 @@ class PlaceAdmin(SortableAdminBase, admin.ModelAdmin):
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
     raw_id_fields = ('place', )
-    readonly_fields = ["pic", ]
+    readonly_fields = ["get_pic", ]
 
-    def pic(self, obj):
+    def get_pic(self, obj):
         k = obj.picture.width / obj.picture.height
         return format_html(
             '<img src="{}" width="{}" height={} />',
