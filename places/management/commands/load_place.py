@@ -14,10 +14,12 @@ class Command(BaseCommand):
         raw_place = response.json()
         place, is_found = Place.objects.get_or_create(
             title=raw_place['title'],
-            short_description=raw_place['description_short'],
-            long_description=raw_place['description_long'],
-            lng=raw_place['coordinates']['lng'],
-            lat=raw_place['coordinates']['lat']
+            defaults={
+                'short_description': raw_place['description_short'],
+                'long_description': raw_place['description_long'],
+                'lng': raw_place['coordinates']['lng'],
+                'lat': raw_place['coordinates']['lat']
+            }
         )
         images_urls = raw_place['imgs']
         for index, image_url in enumerate(images_urls, start=1):
