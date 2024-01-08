@@ -11,15 +11,15 @@ class Command(BaseCommand):
         link = options['link']
         response = requests.get(link)
         response.raise_for_status()
-        json_place = response.json()
+        raw_place = response.json()
         place = Place.objects.create(
-            title=json_place['title'],
-            short_description=json_place['description_short'],
-            long_description=json_place['description_long'],
-            lng=json_place['coordinates']['lng'],
-            lat=json_place['coordinates']['lat']
+            title=raw_place['title'],
+            short_description=raw_place['description_short'],
+            long_description=raw_place['description_long'],
+            lng=raw_place['coordinates']['lng'],
+            lat=raw_place['coordinates']['lat']
         )
-        images_urls = json_place['imgs']
+        images_urls = raw_place['imgs']
         for index, image_url in enumerate(images_urls, start=1):
             image = Image.objects.create(
                 place=place,
@@ -28,7 +28,7 @@ class Command(BaseCommand):
             response = requests.get(image_url)
             response.raise_for_status()
             image.picture.save(
-                f'{json_place["title"]}{index}.jpg',
+                f'{raw_place["title"]}{index}.jpg',
                 ContentFile(response.content),
                 save=True
             )

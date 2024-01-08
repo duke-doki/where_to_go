@@ -10,14 +10,14 @@ from places.models import Place
 
 def index(request):
     places = Place.objects.all()
-    places_json = {
+    places_view = {
         "type": "FeatureCollection",
         "features": [
 
         ]
     }
     for place_point in places:
-        places_json["features"].append(
+        places_view["features"].append(
             {
                 "type": "Feature",
                 "geometry": {
@@ -33,7 +33,7 @@ def index(request):
 
         )
 
-    data = {"places_json": places_json, }
+    data = {"places_json": places_view, }
     return render(request, "index.html", context=data)
 
 
