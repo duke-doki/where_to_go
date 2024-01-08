@@ -1,10 +1,11 @@
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+import urllib.parse
+
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render
 from django.urls import reverse
 
 from places.models import Place
-import urllib.parse
 
 
 def index(request):
@@ -16,7 +17,7 @@ def index(request):
         ]
     }
     for place_point in all_places:
-        places_json['features'].append(
+        places_json["features"].append(
             {
                 "type": "Feature",
                 "geometry": {
@@ -32,7 +33,7 @@ def index(request):
 
         )
 
-    data = {'places_json': places_json, }
+    data = {"places_json": places_json, }
     return render(request, "index.html", context=data)
 
 
@@ -50,6 +51,6 @@ def place(request, place_id):
     response = JsonResponse(
         place_info,
         safe=False,
-        json_dumps_params={'ensure_ascii': False, 'indent': 2}
+        json_dumps_params={"ensure_ascii": False, "indent": 2}
     )
     return response
