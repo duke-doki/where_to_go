@@ -12,13 +12,9 @@ class ImageInline(SortableTabularInline):
     fields = ("picture", "get_pic", "number")
 
     def get_pic(self, image):
-        k = image.picture.width / image.picture.height
-        max_height = 200
         return format_html(
-            '<img src="{}" width="{}" height={} />',
-            image.picture.url,
-            k * max_height,
-            max_height
+            '<img src="{}" style="max-width:200px; max-height:200px" />',
+            image.picture.url
         )
 
     get_pic.short_description = "Preview"
@@ -38,13 +34,9 @@ class ImageAdmin(admin.ModelAdmin):
     readonly_fields = ["get_pic", ]
 
     def get_pic(self, image):
-        k = image.picture.width / image.picture.height
-        max_height = 200
         return format_html(
-            '<img src="{}" width="{}" height={} />',
-            image.picture.url,
-            k * max_height,
-            max_height
+            '<img src="{}" style="max-width:200px; max-height:200px" />',
+            image.picture.url
         )
 
     get_pic.short_description = "Preview"
