@@ -9,17 +9,19 @@ from django.utils.html import format_html
 
 class ImageInline(SortableTabularInline):
     model = Image
-    readonly_fields = ["pic", ]
-    fields = ("picture", "pic", "number")
-    def pic(model, obj):
-        k = obj.picture.width / obj.picture.height
-        return mark_safe(
-            f'<'
-            f'img src="{obj.picture.url}" '
-            f'width="{k * 200}" '
-            f'height={200} '
-            f'/>'
+    readonly_fields = ["get_pic", ]
+    fields = ("picture", "get_pic", "number")
+
+    def get_pic(self, image):
+        k = image.picture.width / image.picture.height
+        return format_html(
+            '<img src="{}" width="{}" height={} />',
+            image.picture.url,
+            k * 200,
+            200
         )
+
+    get_pic.short_description = "Preview"
 
 
 @admin.register(Place)
@@ -35,11 +37,13 @@ class ImageAdmin(admin.ModelAdmin):
     raw_id_fields = ('place', )
     readonly_fields = ["get_pic", ]
 
-    def get_pic(self, obj):
-        k = obj.picture.width / obj.picture.height
+    def get_pic(self, image):
+        k = image.picture.width / image.picture.height
         return format_html(
             '<img src="{}" width="{}" height={} />',
-            obj.picture.url,
+            image.picture.url,
             k * 200,
             200
         )
+
+    get_pic.short_description = "Preview"
