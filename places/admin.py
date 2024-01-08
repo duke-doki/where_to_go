@@ -4,6 +4,7 @@ from adminsortable2.admin import SortableAdminMixin
 from places.models import Place, Image
 from adminsortable2.admin import SortableTabularInline
 from adminsortable2.admin import SortableAdminBase
+from django.utils.html import format_html
 
 
 class ImageInline(SortableTabularInline):
@@ -36,10 +37,9 @@ class ImageAdmin(admin.ModelAdmin):
 
     def pic(self, obj):
         k = obj.picture.width / obj.picture.height
-        return mark_safe(
-            f'<'
-            f'img src="{obj.picture.url}" '
-            f'width="{k * 200}" '
-            f'height={200} '
-            f'/>'
+        return format_html(
+            '<img src="{}" width="{}" height={} />',
+            obj.picture.url,
+            k * 200,
+            200
         )
