@@ -7,11 +7,11 @@ class Place(models.Model):
         'Место',
         max_length=100
     )
-    description_short = models.TextField(
+    short_description = models.TextField(
         'Короткое описание',
         blank=True
     )
-    description_long = HTMLField(
+    long_description = HTMLField(
         'Длинное описание',
         blank=True
     )

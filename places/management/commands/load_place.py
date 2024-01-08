@@ -14,8 +14,8 @@ class Command(BaseCommand):
         json_place = response.json()
         place = Place.objects.create(
             title=json_place['title'],
-            description_short=json_place['description_short'],
-            description_long=json_place['description_long'],
+            short_description=json_place['description_short'],
+            long_description=json_place['description_long'],
             coordinates=json_place['coordinates']
         )
         images_urls = json_place['imgs']
