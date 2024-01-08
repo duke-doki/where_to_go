@@ -14,11 +14,12 @@ class ImageInline(SortableTabularInline):
 
     def get_pic(self, image):
         k = image.picture.width / image.picture.height
+        max_height = 200
         return format_html(
             '<img src="{}" width="{}" height={} />',
             image.picture.url,
-            k * 200,
-            200
+            k * max_height,
+            max_height
         )
 
     get_pic.short_description = "Preview"
@@ -39,11 +40,12 @@ class ImageAdmin(admin.ModelAdmin):
 
     def get_pic(self, image):
         k = image.picture.width / image.picture.height
+        max_height = 200
         return format_html(
             '<img src="{}" width="{}" height={} />',
             image.picture.url,
-            k * 200,
-            200
+            k * max_height,
+            max_height
         )
 
     get_pic.short_description = "Preview"
