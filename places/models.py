@@ -17,11 +17,9 @@ class Place(models.Model):
     )
     lng = models.FloatField(
         'Долгота',
-        null=True, blank=True
     )
     lat = models.FloatField(
         'Широта',
-        null=True, blank=True
     )
 
     def coordinates(self):
@@ -38,13 +36,11 @@ class Place(models.Model):
 class Image(models.Model):
     picture = models.ImageField(
         'Картинка',
-        blank=True
     )
     place = models.ForeignKey(
         Place,
         verbose_name='Связь с местом',
         on_delete=models.CASCADE,
-        null=True, blank=True,
         related_name='images'
     )
     number = models.IntegerField(
