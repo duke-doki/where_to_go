@@ -10,28 +10,25 @@ from places.models import Place
 
 def index(request):
     places = Place.objects.all()
+    features = [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": list(place_point.coordinates().values())
+            },
+            "properties": {
+                "title": place_point.title,
+                "placeId": "moscow_legends",
+                "detailsUrl": reverse(get_place, args=[place_point.id])
+            }
+        }
+        for place_point in places
+    ]
     places_view = {
         "type": "FeatureCollection",
-        "features": [
-
-        ]
+        "features": features
     }
-    for place_point in places:
-        places_view["features"].append(
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": list(place_point.coordinates().values())
-                },
-                "properties": {
-                    "title": place_point.title,
-                    "placeId": "moscow_legends",
-                    "detailsUrl": reverse(get_place, args=[place_point.id])
-                }
-            }
-
-        )
 
     data = {"places_json": places_view, }
     return render(request, "index.html", context=data)
