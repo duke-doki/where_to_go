@@ -21,6 +21,9 @@ class Place(models.Model):
     lat = models.FloatField(
         'Широта',
     )
+    
+    def __str__(self):
+        return self.title
 
     def compile_coordinates(self):
         coordinates = {
@@ -28,9 +31,6 @@ class Place(models.Model):
             "lat": self.lat
         }
         return coordinates
-
-    def __str__(self):
-        return self.title
 
 
 class Image(models.Model):
