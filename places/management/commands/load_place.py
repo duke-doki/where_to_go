@@ -21,16 +21,16 @@ class Command(BaseCommand):
         )
         images_urls = raw_place['imgs']
         for index, image_url in enumerate(images_urls, start=1):
-            image = Image.objects.create(
-                place=place,
-                number=index
-            )
             response = requests.get(image_url)
             response.raise_for_status()
-            image.picture.save(
-                f'{raw_place["title"]}{index}.jpg',
-                ContentFile(response.content),
-                save=True
+            content_file = ContentFile(
+                response.content,
+                f'{raw_place["title"]}{index}.jpg'
+            )
+            Image.objects.get_or_create(
+                place=place,
+                number=index,
+                picture=content_file
             )
 
     def add_arguments(self, parser):
