@@ -9,14 +9,14 @@ from places.models import Place
 
 
 def index(request):
-    all_places = Place.objects.all()
+    places = Place.objects.all()
     places_json = {
         "type": "FeatureCollection",
         "features": [
 
         ]
     }
-    for place_point in all_places:
+    for place_point in places:
         places_json["features"].append(
             {
                 "type": "Feature",
