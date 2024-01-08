@@ -45,6 +45,7 @@ class Image(models.Model):
     )
     number = models.IntegerField(
         'Номер',
+        default=0,
         null=True, blank=True,
         db_index=True
     )
